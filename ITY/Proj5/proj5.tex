@@ -1,0 +1,291 @@
+\documentclass[10pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage{times}
+\usepackage{graphics}
+\usepackage{listings}
+\usepackage{color}
+\usepackage[slovak]{babel}
+\usepackage{url}
+\usepackage[czech, linesnumbered, noline, ruled, longend]{algorithm2e}
+
+\usetheme{CambridgeUS}
+
+\title{Quick Sort}
+\author{xxxxx(xlogin00)}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{frame}{Quick Sort}
+    \begin{itemize}
+        \item alebo \textbf{rýchle triedenie} je veľmi rýchly nestabilný triediaci algoritmus
+        \item jeho priemerná doba výpočtu je $O(n.\log(n))$ 
+        \item pri nevhodnom tvare vstupných dát môže jeho zložitosť byť $O(n^2)$ (napríklad pri triedení už zotriedeného poľa)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Quicksort - princíp}
+    \begin{itemize}
+        \item vstupnú postupnosť rozdelí na dve približne rovnaké časti
+            \begin{itemize}
+                \item zvolíme si pivot postupnosti
+                \item na ľavo by mali byť prvky menšie než pivot
+                \item na pravo by mali byť prvky väčšie než pivot
+            \end{itemize} 
+        \item na rozdelenie postupnosti sa používa procedúra \textbf{partition}, ktorá sa zavolá po tom, ako si zvolíme pivota
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Quicksort - princíp}
+    \begin{itemize}
+        \item zvolíme si pivota postupnosti
+    
+    \begin{figure}[h] 
+        \centering
+        \setlength{\unitlength}{0.5cm}
+        \begin{picture}(10,6.5)
+            \put(0,6){\line(1,0){7}}
+            \put(0,6){\line(0,-1){1}}
+            \put(1,6){\line(0,-1){1}}
+            \put(2,6){\line(0,-1){1}}
+            \put(3,6){\line(0,-1){1}}
+            \put(4,6){\line(0,-1){1}}
+            \put(5,6){\line(0,-1){1}}
+            \put(6,6){\line(0,-1){1}}
+            \put(7,6){\line(0,-1){1}}
+            \put(0,5){\line(1,0){7}}
+            
+            \put(0.3,5.3){8}
+            \put(1.3,5.3){7}
+            \put(2.3,5.3){6}
+            \put(3.3,5.3){1}
+            \put(4.3,5.3){0}
+            \put(5.3,5.3){9}
+            \put(6.3,5.3){\color{red}{2}}
+            \end{picture}
+            
+        \end{figure}
+        \pause
+        
+        \item prvky poľa premiestníme tak, aby tie, ktoré sú menšie, boli naľavo od pivota a tie, ktoré sú väčšie na pravo
+        
+        \begin{figure}[h] 
+        \centering
+        \setlength{\unitlength}{0.5cm}
+        \begin{picture}(10,6.5)
+            \put(0,6){\line(1,0){7}}
+            \put(0,6){\line(0,-1){1}}
+            \put(1,6){\line(0,-1){1}}
+            \put(2,6){\line(0,-1){1}}
+            \put(3,6){\line(0,-1){1}}
+            \put(4,6){\line(0,-1){1}}
+            \put(5,6){\line(0,-1){1}}
+            \put(6,6){\line(0,-1){1}}
+            \put(7,6){\line(0,-1){1}}
+            \put(0,5){\line(1,0){7}}
+            
+            \put(0.3,5.3){1}
+            \put(1.3,5.3){0}
+            \put(2.3,5.3){\color{red}{2}}
+            \put(3.3,5.3){8}
+            \put(4.3,5.3){7}
+            \put(5.3,5.3){9}
+            \put(6.3,5.3){6}
+            \end{picture}
+        \end{figure}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Partition}
+    \begin{itemize}
+        \item začíname na prvku úplne naľavo s indexom i
+        \item pokiaľ je pivot menší než prvok na indexe i, uložíme si ukazateľ na tento prvok
+        \item pivot sa ďalej porovnáva s ostatnými prvkami
+        \item ak narazí na prvok menší, než je pivot, tak sa tento prvok prehodí s väčším prvkom, ktorý bol nájdený skôr
+        \item proces pokračuje kým nenarazí na predposledný prvok
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Partition}
+    \begin{figure}[h] 
+        \centering
+        \setlength{\unitlength}{0.5cm}
+        \begin{picture}(20,6.5)
+            \put(0,10){\line(1,0){7}} 
+            \put(0,10){\line(0,-1){1}} 
+            \put(1,10){\line(0,-1){1}}
+            \put(2,10){\line(0,-1){1}}
+            \put(3,10){\line(0,-1){1}}
+            \put(4,10){\line(0,-1){1}}
+            \put(5,10){\line(0,-1){1}}
+            \put(6,10){\line(0,-1){1}}
+            \put(7,10){\line(0,-1){1}}
+            \put(0,9){\line(1,0){7}}
+            
+            \put(6.5,8){\line(0,1){1}}
+            \put(0.5,8){\line(1,0){6}}
+            \put(0.5,8){\line(0,1){1}}
+            
+            \put(0.3,9.3){\color{blue}{8}}
+            \put(1.3,9.3){7}
+            \put(2.3,9.3){6}
+            \put(3.3,9.3){1}
+            \put(4.3,9.3){0}
+            \put(5.3,9.3){9}
+            \put(6.3,9.3){\color{red}{2}}
+            \put(7.3,9.3){2 porovná s 8}
+            \put(7.3,8){8 je väčšia ako dva, preto sa na ňu uloží ukazateľ}
+            
+        \pause
+
+            \put(0,7){\line(1,0){7}}
+            \put(0,7){\line(0,-1){1}}
+            \put(1,7){\line(0,-1){1}}
+            \put(2,7){\line(0,-1){1}}
+            \put(3,7){\line(0,-1){1}}
+            \put(4,7){\line(0,-1){1}}
+            \put(5,7){\line(0,-1){1}}
+            \put(6,7){\line(0,-1){1}}
+            \put(7,7){\line(0,-1){1}}
+            \put(0,6){\line(1,0){7}}
+            
+            \put(6.5,5){\line(0,1){1}}
+            \put(1.5,5){\line(1,0){5}}
+            \put(1.5,5){\line(0,1){1}}
+            
+            \put(0.3,6.3){\color{blue}{8}}
+            \put(1.3,6.3){7}
+            \put(2.3,6.3){6}
+            \put(3.3,6.3){1}
+            \put(4.3,6.3){0}
+            \put(5.3,6.3){9}
+            \put(6.3,6.3){\color{red}{2}}
+            \put(7.3,6.3){na 8 je uložený ukazateľ, 2 porovnáva so 7}
+        
+        \pause
+        
+            \put(0,4){\line(1,0){7}}
+            \put(0,4){\line(0,-1){1}}
+            \put(1,4){\line(0,-1){1}}
+            \put(2,4){\line(0,-1){1}}
+            \put(3,4){\line(0,-1){1}}
+            \put(4,4){\line(0,-1){1}}
+            \put(5,4){\line(0,-1){1}}
+            \put(6,4){\line(0,-1){1}}
+            \put(7,4){\line(0,-1){1}}
+            \put(0,3){\line(1,0){7}}
+            
+            \put(6.5,2){\line(0,1){1}}
+            \put(2.5,2){\line(1,0){4}}
+            \put(2.5,2){\line(0,1){1}}
+            
+            \put(0.3,3.3){\color{blue}{8}}
+            \put(1.3,3.3){7}
+            \put(2.3,3.3){6}
+            \put(3.3,3.3){1}
+            \put(4.3,3.3){0}
+            \put(5.3,3.3){9}
+            \put(6.3,3.3){\color{red}{2}}
+            \put(7.3,3.3){na 8 je uložený ukazateľ, 2 porovnáva so 6}
+            
+        \pause
+
+            \put(0,1){\line(1,0){7}}
+            \put(0,1){\line(0,-1){1}}
+            \put(1,1){\line(0,-1){1}}
+            \put(2,1){\line(0,-1){1}}
+            \put(3,1){\line(0,-1){1}}
+            \put(4,1){\line(0,-1){1}}
+            \put(5,1){\line(0,-1){1}}
+            \put(6,1){\line(0,-1){1}}
+            \put(7,1){\line(0,-1){1}}
+            \put(0,0){\line(1,0){7}}
+            
+            \put(6.5,-1){\line(0,1){1}}
+            \put(3.5,-1){\line(1,0){3}}
+            \put(3.5,-1){\line(0,1){1}}
+            
+            \put(0.3,0.3){\color{blue}{8}}
+            \put(1.3,0.3){7}
+            \put(2.3,0.3){6}
+            \put(3.3,0.3){1}
+            \put(4.3,0.3){0}
+            \put(5.3,0.3){9}
+            \put(6.3,0.3){\color{red}{2}}
+            \put(7.3,0.3){na 8 je uložený ukazateľ, 2 porovnáva so 6}
+            \put(7,-1){1 je menšia ako 2 a zároveň máme ukazateľ na 8}
+            
+        \pause
+            
+            \put(0,-2){\line(1,0){7}}
+            \put(0,-2){\line(0,-1){1}}
+            \put(1,-2){\line(0,-1){1}}
+            \put(2,-2){\line(0,-1){1}}
+            \put(3,-2){\line(0,-1){1}}
+            \put(4,-2){\line(0,-1){1}}
+            \put(5,-2){\line(0,-1){1}}
+            \put(6,-2){\line(0,-1){1}}
+            \put(7,-2){\line(0,-1){1}}
+            \put(0,-3){\line(1,0){7}}
+            
+            \put(0.5,-4){\line(0,1){1}}
+            \put(0.5,-4){\line(1,0){3}}
+            \put(3.5,-4){\line(0,1){1}}
+            
+            \put(0.3,-2.7){\color{blue}{1}}
+            \put(1.3,-2.7){7}
+            \put(2.3,-2.7){6}
+            \put(3.3,-2.7){\color{blue}{8}}
+            \put(4.3,-2.7){0}
+            \put(5.3,-2.7){9}
+            \put(6.3,-2.7){\color{red}{2}}
+            \put(7.3,-2.7){1 a 8 sa prehodia}
+            \end{picture}
+        \end{figure}
+\end{frame}
+
+\begin{frame}{Quicksort pseudo kód}
+    \begin{algorithm}[H]
+        \caption{Quicksort rekurzívna varianta}
+            \SetKwProg{Fn}{Function quicksort}{:}{}
+                \Fn{($arr[]$, $low$, $high$)}{
+                    \uIf{($low < high$)} {
+                        pi = partition(arr, low, high)\;
+                        quickSort(arr, low, pi - 1)\;
+                        quickSort(arr, pi + 1, high)\;
+                    }
+                }
+         
+    \end{algorithm}
+\end{frame}
+
+\begin{frame}{Partition pseudo kód}
+    \begin{algorithm}[H]
+            \SetKwProg{Fn}{Function partition}{:}{}
+                \Fn{($arr[]$, $low$, $high$)}{
+                    pivot = arr[high]\;
+                    i = (low - 1) \;
+                    \For{$j = low; j <= high- 1; j++$} {
+                        \uIf{($arr[j] < pivot$)} {
+                            i++ \;
+                            swap arr[i] and arr[j] \;
+                        }
+                    }
+                    swap arr[i+1] and arr[high] \;
+                    \Return {(i+1)}
+                }
+        \end{algorithm}
+\end{frame}
+
+\begin{frame}{Použité zdroje}
+\begin{itemize}
+    \item \texttt{\url{https://sk.wikipedia.org/wiki/Quicksort}}
+    \item \texttt{\url{https://www.geeksforgeeks.org/quick-sort/}}
+    \item \texttt{\url{https://www.programiz.com/dsa/quick-sort}}
+\end{itemize} 
+    
+\end{frame}
+
+\end{document}

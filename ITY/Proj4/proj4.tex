@@ -1,0 +1,59 @@
+\documentclass[11pt, a4paper, titlepage]{article}
+\usepackage[left=2cm,text={17cm,24cm},top=3cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{url}
+\usepackage[resetlabels]{multibib}
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+    \Huge\textsc{Vysoké učení technické v Brně\\
+                \huge{Fakulta informačních technologií}}\\
+    \vspace{\stretch{0.382}}
+    \LARGE{Typografie a publikování\,--\,4. projekt}\\
+            \Huge{Bibliografická citácia}\\
+    \vspace{\stretch{0.618}}
+\end{center}
+{\Large 15. apríla 2022 \hfill xxxx}
+\end{titlepage}
+
+\section*{Úvod} 
+Typografia vznikla v roku 1444 keď Johannes Gutenberg vynašiel kníhtlač. Aby mohla vzniknúť typografia ako taká muselo vzniknúť písmno. \cite{Nova}
+
+\section{Vznik písmna}
+(z clanku jak vznikalo pismno)
+Za prvé písmo sa považuje klinové písmno, ktoré vzniklo 3000 rokov p.n.l v sumerskom Uruku. Toto písmno vznikalo otláčaním drievka do hliny. 
+Počiatkom pre vznik písma boli však obrázky - piktogramy, ktoré symbolizovali akési znaky. Medzi najznámejšie obrázkové písmo patria hieroglify, ktoré vzniki 4000 rokov p.n.l v Egypte. Egypťania požívali 24 hieroglifov.
+Dnes na svete existuje okolo 400 rôznych druhov písiem. \cite{Sirucek} \cite{Valenta}
+
+\section{Písmo v Čechách}
+Prvé nálezy týkajúce sa písomníctva pochádzajú z 11. storočia. Najstaršou písomnou pamiatkou je Wolfenbüttelský kodex, ktorý vznikol na objednávku pre kňažnú Emmu. \cite{Nova}
+
+\section{Typ písma}
+(typograficky manual)
+Pojem typ písma označuje konkrétne písmo, ktoré má svoju charakteristickú kresbu. Každý tým má svoj jedinečný názov, ktorý väčšinou odpovedá menu autora. Keď grafik vytvorí návrh novej abecedy so všetkými diakritickými znamienkami a číslami môžme hovoriť o novom type písma. \cite{Beran}
+
+\section{Times New Roman}
+Times New Roman je jedno z najpoužívanejších typografických písem. Bolo navrhnuté Stanley Morisnom pre denník The Times. \cite{Graphic}
+
+\section{Sans Forgetica}
+Sans Forgetica je font, ktorý bol vyvinutý typografickými odborníkmi z melbournskej RMIT Univerzity. Základom pre tento font bol Albion. Cieľom odborníkov bolo vytvoriť font, pri ktorom by človek musel pri čítaní zapájať viac mozog. Keď je písmo priveľmi zvláštne, mozog sa viac trápi s prečítaním slova ako keď je text prehľadný. \cite{Quark}
+
+\section{Typografické typy}
+Vytvoriť dobrý dizajn typografie je kľúčovým prvkom dizajnérskych zručností. Pár základných pravidiel vám však pomôže typograficky správne napísať dokument. \\
+Prvým dôležitým krokom je vhodný výber písma. Pri výbere písma je dôležité si pozrieť, či písmo obsahuje všetky variácie a znaky, ktoré potrebujete. 
+Dôležitá je tiež veľkosť písma. Výška každého znaku je známa ako "výška x". Pri výbere dvoch rôznych druhov písma je potrebné vyberať také, ktoré majú podobnú výšku.
+Dôležité je tiež rozloženie a šírka textového bloku. Ak sú riadky príliš dlhé, čitateľ sa ľahšie stratí. \cite{Typography}
+
+\section{\LaTeX~}
+\LaTeX vznikol ako nadstavba programu \TeX. Prostredie \TeX bolo vytvorené Donaldom E. Knuthom zo Stanfordskej univerzity. Jedná sa o značkovací programovací jazyk pre sadzbu textov. Jeho najznámejšia a najpoužívanejšia nadstavba \LaTeX bola vytvorená v roku 1938 L. Lamportom. \\
+Cieľom pre vytvorenie takéhoto prostredia bolo uľahčiť tvorbu bežných dokumentov. Jednotlivé dokumenty sa vytvárajú pomocou príkazov, ktoré sa stále vyvíjajú a pribúdajú nové. Príkladom takého príkazu je napríklad \verb|\large|, \verb|\Large| and \verb|\LARGE|, ktoré zmenia veľkosť textu označeného v {}. Veľa príkazov funguje práve na tomto princípe, kde sa kúsok textu vloží ako argument príkazu v {}( napr. \verb|\emph{stress}| zobrazí slovo stress ako kurzívu). \\
+\LaTeX je voľne dostupný pre každého. Umožňuje dokonca aj podporu českého jazyka pridaním balíčka \verb|\usepackage[czech]|. Kódovanie zabezpečíme pomocou balíčka \verb|\inputenc|. Najpoužívanejšie kódovanie je UTF-8. \cite{Helmut} \cite{Rybicka} \cite{Strapa}
+
+\newpage
+\bibliographystyle{czechiso}
+\bibliography{proj4}
+\end{document}
