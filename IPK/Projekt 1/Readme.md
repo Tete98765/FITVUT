@@ -1,5 +1,4 @@
 # IPK - Projekt 1
-**Autor:** Terézia Hundáková (xhunda01)
 **Dátum:** 8.3.2022
 
 Cieľom projektu bolo vytvoriť server, ktorý bude komunikovať prostredníctvom HTTP protokolu a poskytovať rôzne informácie o systéme. Komunikácia so serverom je možná pomocou webového prehliadača alebo pomocou nástrojov wget a curl.
